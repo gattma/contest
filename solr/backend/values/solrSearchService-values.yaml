@@ -1,0 +1,14 @@
+applicationName: solr-backend
+
+workspace:
+  size: 1Gi
+
+pipelineRun:
+  create: true
+  sourceRepo: https://github.com/gattma/contest.git
+  sourceRevision: 884a7b65ad052fdf49e771b39b520ee5b3666830
+  shortSourceRevision: 884a7b6
+  dockerfile: ./src/main/docker/Dockerfile.jvm
+  imageRegistry: image-registry.openshift-image-registry.svc.cluster.local:5000
+  imageRepository: # default = Release.Namespace
+  contextdir: solr/backend/SolrSearchService

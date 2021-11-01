@@ -20,8 +20,10 @@ import java.util.Objects;
 
 public class Importer {
 
-    private final String solrUrl = "http://localhost:8983/solr/";
-    private final String solrCore = "bigboxstore";
+    // private final String solrUrl = "http://localhost:8983/solr/";
+    // private final String solrCore = "bigboxstore";
+    private final String solrUrl = "http://solr-contest.apps.play.gepaplexx.com/solr/";
+    private final String solrCore = "contest-core";
 
     private final SolrClient solrClient;
     private final PDFParser pdfparser = new PDFParser();
