@@ -1,0 +1,47 @@
+kind: Deployment
+apiVersion: apps/v1
+metadata:
+  name: openshift-solr
+  namespace: contest
+  labels:
+    app: openshift-solr
+    app.kubernetes.io/component: openshift-solr
+    app.kubernetes.io/instance: openshift-solr
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      deployment: openshift-solr
+  template:
+    metadata:
+      labels:
+        deployment: openshift-solr
+    spec:
+      volumes:
+        - name: openshift-solr-volume-1
+          emptyDir: {}
+        - name: solr-data-volume
+          persistentVolumeClaim:
+            claimName: solr-data-pvc
+      containers:
+        - name: openshift-solr
+          image: >-
+            image-registry.openshift-image-registry.svc:5000/contest/openshift-solr@sha256:4388901e7a31aa4ddf87cf9171a297b9d8e469d7b73d80f77e40b26cb6f5c4b4
+          ports:
+            - containerPort: 8983
+              protocol: TCP
+          resources: {} # TODO
+          volumeMounts:
+            - name: openshift-solr-volume-1
+              mountPath: /var/solr
+            - name: solr-data-volume
+              mountPath: "/var/solr/data"
+          terminationMessagePolicy: File
+          imagePullPolicy: IfNotPresent
+  strategy:
+    type: RollingUpdate
+    rollingUpdate:
+      maxUnavailable: 25%
+      maxSurge: 25%
+  revisionHistoryLimit: 10
+  progressDeadlineSeconds: 600

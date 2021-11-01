@@ -1,0 +1,23 @@
+kind: ImageStream
+apiVersion: image.openshift.io/v1
+metadata:
+  name: solr
+  namespace: contest
+  labels:
+    app: openshift-solr
+    app.kubernetes.io/component: openshift-solr
+    app.kubernetes.io/instance: openshift-solr
+spec:
+  lookupPolicy:
+    local: false
+  tags:
+    - name: 8.8.1
+      annotations:
+        openshift.io/imported-from: 'solr:8.8.1'
+      from:
+        kind: DockerImage
+        name: 'solr:8.8.1'
+      generation: 2
+      importPolicy: {}
+      referencePolicy:
+        type: Source
