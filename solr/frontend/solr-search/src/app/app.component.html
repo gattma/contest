@@ -1,0 +1,40 @@
+<div class="basic-container">
+  <mat-card id="card" style="text-align: center;">
+    <mat-card-title>
+      Suche
+    </mat-card-title>
+
+    <mat-card-content>
+      <!-- <mat-form-field class="example-half-width" appearance="outline">
+        <mat-label>Suchbegriff</mat-label>
+        <input matInput>
+      </mat-form-field> -->
+
+      <mat-form-field class="example-half-width" appearance="fill">
+        <mat-label>Suchbegriff</mat-label>
+        <input matInput (keydown.enter)="search($event)">
+      </mat-form-field>
+
+      <!-- <button mat-raised-button color="primary" style="margin:10px;">Los</button> -->
+    </mat-card-content>
+  </mat-card>
+</div>
+
+<div style="padding: 20px;" *ngIf="searchResults && searchResults.length > 0">
+  <table mat-table [dataSource]="searchResults" class="mat-elevation-z8" style="width: 70%;margin: 0 15% 0 15%;">
+    <ng-container matColumnDef="index">
+      <th mat-header-cell *matHeaderCellDef> # </th>
+      <td mat-cell *matCellDef="let element; let i = index;">{{i}}</td>
+    </ng-container>
+    <ng-container matColumnDef="subject">
+      <th mat-header-cell *matHeaderCellDef> Subject </th>
+      <td mat-cell *matCellDef="let element">{{ element.subject }}</td>
+    </ng-container>
+    <ng-container matColumnDef="title">
+      <th mat-header-cell *matHeaderCellDef> Titel </th>
+      <td mat-cell *matCellDef="let element">{{ element.title }}</td>
+    </ng-container>
+    <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+  <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+  </table>
+</div>
