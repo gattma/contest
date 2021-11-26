@@ -21,8 +21,10 @@ quarkus:
     route:
       enabled: true
 
-    readinessProbe: ''
-    livenessProbe: ''
+    readinessProbe:
+      httpGet:
+        path: /ping
+        port: http
 
     ## Application properties file for configuring the Quarkus app
     applicationProperties:
