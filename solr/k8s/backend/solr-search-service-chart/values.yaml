@@ -2,9 +2,9 @@ quarkus:
   image:
     ## Name of the image you want to build/deploy
     ## Defaults to the release name
-    name: image-registry.openshift-image-registry.svc.cluster.local:5000/contest/solr-search-service
+    name: image-registry.openshift-image-registry.svc:5000/contest/solr-search-service
     ## Tag that you want to build/deploy
-    tag: SNAPSHOT
+    tag: 1.0.0-SNAPSHOT
 
   ## Build-specific values (for configuring BuildConfig and ImageStream)
   build:
