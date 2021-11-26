@@ -1,0 +1,15 @@
+deployment:
+  name: openshift-solr
+  image: image-registry.openshift-image-registry.svc:5000/contest/openshift-solr@sha256:9f7b72ce25734cf4db28303a7e16884d7361d9bc18ff90f4d44f7178ce6a7d2a
+
+service:
+  name: openshift-solr
+
+route:
+  name: solr
+
+storage:
+  name: solr-data-pvc
+  size: 1Gi
+  storageClassName: rook-ceph-fs
+  volumeMode: Filesystem
