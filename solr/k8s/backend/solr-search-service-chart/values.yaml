@@ -21,8 +21,8 @@ quarkus:
     route:
       enabled: true
 
-    readinessProve: {}
-    livenessProbe: {}
+    readinessProbe: ''
+    livenessProbe: ''
 
     ## Application properties file for configuring the Quarkus app
     applicationProperties:
