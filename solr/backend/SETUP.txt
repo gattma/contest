@@ -1,1 +1,0 @@
-helm install -f values/solrSearchService-values.yaml solr-backend-build gp-helm-charts/gp-bke-mvn-tekton -n contest
