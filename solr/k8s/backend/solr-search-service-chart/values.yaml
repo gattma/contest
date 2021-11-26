@@ -33,7 +33,7 @@ quarkus:
         solr.hostPort=solr-contest.apps.play.gepaplexx.com
         solr.core=contest-core
         build.version=1.0.0-SNAPSHOT
-        build.date="2021-11-26T19:26:25"
+        build.date=2021-11-26T19:26:25
         quarkus.jaeger.service-name=SolrSearchService
         quarkus.jaeger.sampler-type=const
         quarkus.jaeger.sampler-param=1
