@@ -21,9 +21,16 @@ quarkus:
     route:
       enabled: true
 
+    annotations:
+      sidecar.jaegertracing.io/inject: true
+
     readinessProbe:
       httpGet:
-        path: /ping
+        path: /q/health/ready
+        port: http
+
+    livenessProbe:
+      tcpSocket:
         port: http
 
     ## Application properties file for configuring the Quarkus app
