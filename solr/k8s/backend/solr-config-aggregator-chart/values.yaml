@@ -4,7 +4,7 @@ gp-bke-deploy-quarkus:
     ## Defaults to the release name
     name: image-registry.openshift-image-registry.svc:5000/contest/solr-config-aggregator
     ## Tag that you want to build/deploy
-    tag: 1.0.0-SNAPSHOT
+    tag: 1.0.1-SNAPSHOT
 
   ## Build-specific values (for configuring BuildConfig and ImageStream)
   build:
