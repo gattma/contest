@@ -22,7 +22,7 @@ gp-bke-deploy-quarkus:
       enabled: true
 
     annotations:
-      sidecar.jaegertracing.io/inject: true
+      "sidecar.jaegertracing.io/inject": "true"
 
     readinessProbe:
       httpGet:
