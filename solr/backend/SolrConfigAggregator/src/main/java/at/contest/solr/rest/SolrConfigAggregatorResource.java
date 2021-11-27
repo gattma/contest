@@ -21,7 +21,7 @@ public class SolrConfigAggregatorResource {
     SolrConfigAggregatorService configAggregatorService;
 
     @GET
-    @Produces(MediaType.TEXT_PLAIN)
+    @Produces(MediaType.APPLICATION_JSON)
     public Configurations get() {
         logger.info("SolrConfigAggregatorResource#get()");
         Configurations configs = configAggregatorService.aggregateConfigs();
