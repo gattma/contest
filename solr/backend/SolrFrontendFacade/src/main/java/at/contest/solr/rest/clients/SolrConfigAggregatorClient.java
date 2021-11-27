@@ -14,7 +14,7 @@ public interface SolrConfigAggregatorClient {
 
 
     @GET
-    @Produces(MediaType.TEXT_PLAIN)
+    @Produces(MediaType.APPLICATION_JSON)
     Configurations getConfig();
 
 }
