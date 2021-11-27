@@ -1,4 +1,4 @@
-quarkus: 
+gp-bke-deploy-quarkus: 
   image:
     ## Name of the image you want to build/deploy
     ## Defaults to the release name
