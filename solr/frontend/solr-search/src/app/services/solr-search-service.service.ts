@@ -19,7 +19,7 @@ export class SolrSearchServiceService {
 
   search(keywords: string): Observable<Array<SearchResult>> {
     console.log("Search with keywords: ", keywords);
-    return this.http.get<Array<SearchResult>>("http://localhost:8080/SolrSearchService?text=" + keywords);
+    return this.http.get<Array<SearchResult>>("https://solr-frontend-facade-contest.apps.play.gepaplexx.com/search?text=" + keywords);
   }
 
   searchMock(keywords: string): Observable<Array<SearchResult>> {
