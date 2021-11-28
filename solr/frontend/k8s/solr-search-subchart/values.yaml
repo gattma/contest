@@ -13,7 +13,7 @@ gp-bke-deploy-app:
     name: image-registry.openshift-image-registry.svc:5000/contest/solr-frontend
     pullPolicy: IfNotPresent
     # Overrides the image tag whose default is the chart appVersion.
-    tag: fca5de74eecff5f60e019dfc229066793f8d5909
+    tag: 6a9e664d40499380afdb9c858774bfd15383c184
 
   ports:
     - name: http
