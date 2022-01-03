@@ -1,0 +1,82 @@
+gp-bke-deploy-app: 
+  image:
+    name: image-registry.openshift-image-registry.svc:5000/contest/solr-search-service
+    tag: 1.0.0-SNAPSHOT
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  ## Build-specific values (for configuring BuildConfig and ImageStream)
+  build:
+    ## Should build-related resources such as BuildConfig and ImageStream be created?
+    ## Set this to false if you just want to deploy a previously built image.
+    enabled: false
+
+  ## Application/Deployment-specific values (For configuring Deployment, Service, Route, ConfigMap, etc)
+  deploy:
+    ## Number of pod replicas to deploy
+    replicas: 1
+
+    ## For creating a Route, allowing your application to be accessed from outside the OCP cluster
+    route:
+      enabled: true
+
+    annotations:
+      "sidecar.jaegertracing.io/inject": "true"
+
+    readinessProbe:
+      httpGet:
+        path: /q/health/ready
+        port: http
+
+    livenessProbe:
+      tcpSocket:
+        port: http
+
+    ## Application properties file for configuring the Quarkus app
+    applicationProperties:
+      ## Determines if application properties should be created in a configmap and mounted to the Quarkus container
+      enabled: true
+      ## Location to mount the properties file
+      mountPath: /deployments/config/
+      ## Application properties file contents
+      properties: |-
+        quarkus.http.cors=true
+        solr.hostPort=solr-contest.apps.play.gepaplexx.com
+        solr.core=contest-core
+        build.version=1.0.0-SNAPSHOT
+        build.date=2021-11-26T19:26:25
+        quarkus.jaeger.service-name=SolrSearchService
+        quarkus.jaeger.sampler-type=const
+        quarkus.jaeger.sampler-param=1
+        quarkus.log.console.format=%d{HH:mm:ss} %-5p traceId=%X{traceId}, parentId=%X{parentId}, spanId=%X{spanId}, sampled=%X{sampled} [%c{2.}] (%t) %s%e%n 

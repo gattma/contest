@@ -1,0 +1,45 @@
+kind: Deployment
+apiVersion: apps/v1
+metadata:
+  name: {{ .Values.deployment.name }}
+  labels:
+    app: {{ .Values.deployment.name }}
+    app.kubernetes.io/component: {{ .Values.deployment.name }}
+    app.kubernetes.io/instance: {{ .Values.deployment.name }}
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      deployment: {{ .Values.deployment.name }}
+  template:
+    metadata:
+      labels:
+        deployment: {{ .Values.deployment.name }}
+    spec:
+      volumes:
+        - name: openshift-solr-volume-1
+          emptyDir: {}
+        - name: solr-data-volume
+          persistentVolumeClaim:
+            claimName: {{ .Values.storage.name }}
+      containers:
+        - name: openshift-solr
+          image: {{ .Values.deployment.image }}
+          ports:
+            - containerPort: 8983
+              protocol: TCP
+          resources: {} # TODO
+          volumeMounts:
+            - name: openshift-solr-volume-1
+              mountPath: /var/solr
+            - name: solr-data-volume
+              mountPath: "/var/solr/data"
+          terminationMessagePolicy: File
+          imagePullPolicy: IfNotPresent
+  strategy:
+    type: RollingUpdate
+    rollingUpdate:
+      maxUnavailable: 25%
+      maxSurge: 25%
+  revisionHistoryLimit: 10
+  progressDeadlineSeconds: 600

@@ -1,0 +1,16 @@
+kind: Route
+apiVersion: route.openshift.io/v1
+metadata:
+  name: {{ .Values.route.name }}
+  labels:
+    app: {{ .Values.deployment.name }}
+    app.kubernetes.io/component: {{ .Values.deployment.name }}
+    app.kubernetes.io/instance: {{ .Values.deployment.name }}
+spec:
+  to:
+    kind: Service
+    name: openshift-solr
+    weight: 100
+  port:
+    targetPort: 8983-tcp
+  wildcardPolicy: None
