@@ -1,40 +1,7 @@
-gp-bke-deploy-app: 
+gp-bke-deploy-quarkus:
   image:
     name: image-registry.openshift-image-registry.svc:5000/contest/solr-search-service
     tag: 1.0.0-SNAPSHOT
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
   ## Build-specific values (for configuring BuildConfig and ImageStream)
   build:
@@ -79,4 +46,4 @@ gp-bke-deploy-app:
         quarkus.jaeger.service-name=SolrSearchService
         quarkus.jaeger.sampler-type=const
         quarkus.jaeger.sampler-param=1
-        quarkus.log.console.format=%d{HH:mm:ss} %-5p traceId=%X{traceId}, parentId=%X{parentId}, spanId=%X{spanId}, sampled=%X{sampled} [%c{2.}] (%t) %s%e%n 
+        quarkus.log.console.format=%d{HH:mm:ss} %-5p traceId=%X{traceId}, parentId=%X{parentId}, spanId=%X{spanId}, sampled=%X{sampled} [%c{2.}] (%t) %s%e%n
