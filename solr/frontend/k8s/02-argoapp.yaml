@@ -1,0 +1,11 @@
+argocd:
+  application:
+    name: solr-search-fronted
+    source:
+      chartPath: "solr/frontend/k8s/solr-search-subchart"
+      appRepoURL: "https://github.com/gattma/contest.git"
+      appRevision: "main"
+      valuesYaml: "values.yaml"
+
+  project:
+    name: "contest"
