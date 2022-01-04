@@ -1,5 +1,6 @@
 package at.contest.solr.service;
 
+import at.contest.solr.application.interceptor.SimulateError;
 import at.contest.solr.model.SearchResult;
 import org.apache.solr.client.solrj.SolrQuery;
 import org.apache.solr.client.solrj.SolrServerException;
@@ -24,8 +25,9 @@ public class SolrSearchService {
     @Inject
     HttpSolrClient client;
 
+    @SimulateError
     public List<SearchResult> findByText(String text) throws SolrServerException, IOException {
-        logger.infof("findByText(%s)", text);
+        logger.debugf("findByText(%s)", text);
         SolrQuery query = new SolrQuery();
         query.set("q", String.format("text:%s", text));
         logger.debugf("search with query 'text:%s'", text);
@@ -36,7 +38,7 @@ public class SolrSearchService {
 
         var resultList = new ArrayList<SearchResult>();
         for (SolrDocument doc : docList) {
-            logger.debugf("found in title: %s", doc.getFieldValue("title"));
+            logger.infof("found in title: %s", doc.getFieldValue("title"));
             resultList.add(new SearchResult(
                     (String) doc.getFieldValue("title"),
                     (String) doc.getFieldValue("subject"))

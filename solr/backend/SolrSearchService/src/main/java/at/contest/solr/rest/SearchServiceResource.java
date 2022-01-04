@@ -27,10 +27,10 @@ public class SearchServiceResource {
     @Produces(MediaType.APPLICATION_JSON)
     @Path("findByText")
     public List<SearchResult> findByText(@QueryParam("text") String text) throws SolrServerException, IOException {
-        logger.infof("findByText(%s)", text);
+        logger.debugf("findByText(%s)", text);
         try {
             var result = searchService.findByText(text);
-            logger.debugf("found %d results", result.size());
+            logger.infof("found %d results", result.size());
             return result;
         } catch (SolrServerException | IOException e) {
             logger.error(e);
@@ -42,7 +42,7 @@ public class SearchServiceResource {
     @Path("ping")
     @Produces(MediaType.TEXT_PLAIN)
     public String ping(@QueryParam("param") String s) {
-        logger.infof("SearchServiceResource#ping(%s)", s);
+        logger.debugf("SearchServiceResource#ping(%s)", s);
         return "pong";
     }
 
