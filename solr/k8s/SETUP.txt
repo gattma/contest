@@ -1,0 +1,30 @@
+###############################################
+################### ARGO CD ###################
+###############################################
+
+oc apply -f values/argocd/argocd.yaml -n contest
+
+###############################################
+################# APACHE SOLR #################
+###############################################
+
+oc apply -f solr-image-build/01-openshift-solr-is.yaml
+oc apply -f solr-image-build/02-solr-is.yaml
+oc apply -f solr-image-build/03-solr-buildconfig.yaml
+
+helm install apache-solr-instance gepaplexx-charts/gp-bke-argocd-application -f values/argo-app-values/apache-solr.yaml
+
+!!!!!!!!!! TODO Daten einspielen !!!!!!!!!!!!!!!!!!!
+
+###############################################
+############### SOLR SEARCH APP ###############
+###############################################
+
+helm install -f values/tekton-build-values/solrSearchService-values.yaml solr-search-service-build gp-helm-charts/gp-bke-mvn-tekton -n contest
+helm install -f values/tekton-build-values/solrConfigAggregator-values.yaml solr-config-aggregator-build gp-helm-charts/gp-bke-mvn-tekton -n contest
+helm install -f values/tekton-build-values/solrFrontendFacade-values.yaml solr-frontend-facade-build gp-helm-charts/gp-bke-mvn-tekton -n contest
+
+
+helm install solr-search-service-argoapp -n contest gepaplexx-charts/gp-bke-argocd-application -f values/argo-app-values/solr-search-service.yaml -n contest
+helm install solr-config-aggregator-argoapp -n contest gepaplexx-charts/gp-bke-argocd-application -f values/argo-app-values/solr-config-aggregator.yaml -n contest
+helm install solr-frontend-facade-argoapp -n contest gepaplexx-charts/gp-bke-argocd-application -f values/argo-app-values/solr-frontend-facade.yaml -n contest

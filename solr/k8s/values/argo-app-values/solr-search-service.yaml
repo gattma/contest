@@ -1,0 +1,11 @@
+argocd:
+  application:
+    name: solr-search-service
+    source:
+      chartPath: "solr/k8s/charts/solr-search-service-chart"
+      appRepoURL: "https://github.com/gattma/contest.git"
+      appRevision: "main"
+      #valuesYaml: "values.yaml"
+
+  project:
+    name: "contest"

@@ -28,6 +28,12 @@
             <artifactId>solr-cell</artifactId>
             <version>7.3.0</version>
         </dependency>
+
+        <dependency>
+            <groupId>junit</groupId>
+            <artifactId>junit</artifactId>
+            <version>4.13.2</version>
+        </dependency>
     </dependencies>
 
 </project>

@@ -3,7 +3,9 @@ package at.contest;
 import org.apache.commons.lang3.StringUtils;
 import org.apache.solr.client.solrj.SolrClient;
 import org.apache.solr.client.solrj.SolrServerException;
+import org.apache.solr.client.solrj.embedded.EmbeddedSolrServer;
 import org.apache.solr.client.solrj.impl.HttpSolrClient;
+import org.apache.solr.client.solrj.request.CoreAdminRequest;
 import org.apache.solr.common.SolrInputDocument;
 import org.apache.tika.exception.TikaException;
 import org.apache.tika.metadata.Metadata;
@@ -20,7 +22,7 @@ import java.util.Objects;
 
 public class Importer {
 
-    // private final String solrUrl = "http://localhost:8983/solr/";
+    //private final String solrUrl = "http://localhost:8983/solr/";
     // private final String solrCore = "bigboxstore";
     private final String solrUrl = "http://solr-contest.apps.play.gepaplexx.com/solr/";
     private final String solrCore = "contest-core";
@@ -69,7 +71,7 @@ public class Importer {
     }
 
     public static void main(String[] args) {
-        File file = new File("/Users/markogattringer/Documents/SolrData");
+        File file = new File("/Users/markogattringer/workspaces/contest/solr/SolrDataImporter/docs");
         new Importer().processFiles(Objects.requireNonNull(file.listFiles()), file.getName());
     }
 }

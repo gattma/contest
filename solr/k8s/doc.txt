@@ -1,0 +1,10 @@
+helm install contest-argocd -n contest gepaplexx-charts/gp-bke-argocd
+
+helm install -f solr/k8s/tekton-build-values/solrSearchService-values.yaml solr-search-service-build gp-helm-charts/gp-bke-mvn-tekton -n contest
+helm install solr-search-service-argoapp -n contest gepaplexx-charts/gp-bke-argocd-application -f solr/k8s/argo-app-values/solr-search-service.yaml -n contest
+
+helm install -f solr/k8s/tekton-build-values/solrConfigAggregator-values.yaml solr-config-aggregator-build gp-helm-charts/gp-bke-mvn-tekton -n contest
+helm install solr-config-aggregator-argoapp -n contest gepaplexx-charts/gp-bke-argocd-application -f solr/k8s/argo-app-values/solr-config-aggregator.yaml -n contest
+
+helm install -f solr/k8s/tekton-build-values/solrFrontendFacade-values.yaml solr-frontend-facade-build gp-helm-charts/gp-bke-mvn-tekton -n contest
+helm install solr-frontend-facade-argoapp -n contest gepaplexx-charts/gp-bke-argocd-application -f solr/k8s/argo-app-values/solr-frontend-facade.yaml -n contest

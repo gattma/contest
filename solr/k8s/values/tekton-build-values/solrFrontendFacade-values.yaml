@@ -1,0 +1,11 @@
+applicationName: solr-frontend-facade
+
+workspace:
+  size: 1Gi
+
+createInitialRun: true
+sourceRepo: https://github.com/gattma/contest.git
+sourceRevision: main
+version: SNAPSHOT
+dockerfile: ./src/main/docker/Dockerfile.jvm
+contextdir: solr/backend/SolrFrontendFacade
